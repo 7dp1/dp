@@ -1,0 +1,50 @@
+no_of_nodes=int(input("Enter the no of nodes: "))
+
+graph={}
+
+for i in range(no_of_nodes):
+    node=input("ENter the node name:")
+    graph[node]=[]
+    no_of_neighbours=int(input("Enter the no of neighbuours"))
+    lst=[]
+    for j in range(no_of_neighbours):
+        neighbour=input("Enter the neighbour")
+        lst.append(neighbour)
+    graph[node]=lst
+
+print(graph)
+
+visited=set()
+
+def dfs(graph,vertex,visited):
+    if vertex not in visited:
+        visited.add(vertex)
+        print(vertex)
+        for neighbour in graph[vertex]:
+            dfs(graph,neighbour,visited)
+
+visited1=set()
+
+def bfs(graph,vertex,visited1):
+    visited1.add(vertex)
+    queue=[]
+    queue.append(vertex)
+
+    while queue:
+        v=queue.pop(0)
+        print(v)
+
+        for neighbour in graph[v]:
+            if neighbour not in visited1:
+                visited1.add(neighbour)
+                queue.append(neighbour)
+
+
+
+v=input("Enter the vertex name")
+
+if v in graph:
+    print("DFS:")
+    dfs(graph,v,visited)
+    print("BFS:")
+    bfs(graph,v,visited1)
